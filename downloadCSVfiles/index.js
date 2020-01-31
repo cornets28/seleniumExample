@@ -1,21 +1,28 @@
 const { Builder } = require("selenium-webdriver");
-const firefox = require("selenium-webdriver/firefox");
-const options = new firefox.Options();
+const chrome = require("selenium-webdriver/chrome");
+const proxy = require("selenium-webdriver/proxy");
+const options = new chrome.Options();
 
-options.setPreference(
-  "browser.download.dir",
-  "/Users/samuelcornet/Desktop/mySeleniumDownloads"
-);
-options.setPreference("browser.download.folderList", 2);
-options.setPreference(
-  "browser.helperApps.neverAsk.saveToDisk",
-  "application/x-csv"
-);
+const proxyServer = "43.225.67.39:53905";
+
+// options.setPreference(
+//   "browser.download.dir",
+//   "/Users/samuelcornet/Desktop/mySeleniumDownloads"
+// );
+// options.setPreference("browser.download.folderList", 2);
+// options.setPreference(
+//   "browser.helperApps.neverAsk.saveToDisk",
+//   "application/x-csv"
+// );
 
 const driver = new Builder()
-  .forBrowser("firefox")
-  .setFirefoxOptions(options)
+  .forBrowser("chrome")
+  // .setFirefoxOptions(options)
+  .setProxy(
+    proxy.manual({
+      http: proxyServer,
+      https: proxyServer
+    })
+  )
   .build();
-driver.get(
-  "insight.dev.schoolwires.com/HelpAssets/C2Assets/C2Files/C2ImportCalEventSample.csv"
-);
+driver.get("https://whatismyipaddress.com/");
