@@ -15,16 +15,18 @@ async function radioButtonForm() {
       .sendKeys("Optional");
     await driver
       .findElement(
-        By.xpath(
-          "//input[@value='two-bed-appartment']/following::span"
-        )
+        By.xpath("//input[@value='two-bed-appartment']/following::span")
       )
       .click();
     await driver
       .findElement(By.xpath("//nb-checkbox[@value='dinner']/label/span"))
       .click();
 
-    await driver.findElement(By.name("submit")).click();
+    await driver
+      .findElement(By.xpath("//nb-checkbox[@value='lunch']/label/span"))
+      .click();
+
+    await driver.findElement(By.xpath("//button[@id='submit']")).click();
   } catch (error) {
     console.log(error);
   }
